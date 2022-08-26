@@ -2,9 +2,10 @@ let wins = 0;
 let losses = 0;
 let ties = 0;
 let yourChoice;
+let computerOptions = ['R', 'P', 'S'];
 
 function getPlayerChoice() {
-  yourChoice = prompt('Type: R, P OR S');
+  yourChoice = prompt('Type: R, P OR S').toUpperCase();
   if (yourChoice != 'R' && yourChoice != 'P' && yourChoice != 'S') {
     alert('Invalid entry, please try again.');
     getPlayerChoice();
@@ -13,10 +14,11 @@ function getPlayerChoice() {
 
 function playRPS() {
   getPlayerChoice();
-  let computerChoice = Math.floor(Math.random() * 3);
+  let computerChoice = Math.floor(Math.random() * computerOptions.length);
   switch (computerChoice) {
     case 0:
-      alert('The computer chose: R')
+      computerChoice = 'R';
+      alert(`The computer chose: ${computerChoice}`)
       if (yourChoice === 'R') {
         alert('It\'s a tie');
         ties++;
@@ -32,7 +34,8 @@ function playRPS() {
       break;
       
     case 1:
-      alert('The computer chose: P')
+      computerChoice = 'P';
+      alert(`The computer chose: ${computerChoice}`)
       if (yourChoice === 'R') {
         alert('So close. You lost this time.');
         losses++;
@@ -48,7 +51,8 @@ function playRPS() {
       break;
       
     default:
-      alert('The computer chose: S')
+      computerChoice = 'S';
+      alert(`The computer chose: ${computerChoice}`)
       if (yourChoice === 'R') {
         alert('You\'ve won! Congratulations!!');
         wins++;
